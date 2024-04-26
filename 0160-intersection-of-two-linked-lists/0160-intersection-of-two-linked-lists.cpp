@@ -11,21 +11,21 @@ public:
   ListNode *getIntersectionNode(ListNode *headA, ListNode *headB)
 {
 ListNode *p1 = headA;
-ListNode *p2 = headB;
-
-    if (p1 == NULL || p2 == NULL) return NULL;
-
-    while (p1 != NULL && p2 != NULL && p1 != p2) {
-        p1 = p1->next;
-        p2 = p2->next;
-
-        if (p1 == p2) return p1;
-
-        
-        if (p1 == NULL) p1 = headB;
-        if (p2 == NULL) p2 = headA;
-    }
-        
-    return p1;
-}
+      ListNode *p2 = headB;
+        unordered_set<ListNode*> set;
+         while(p1!=NULL)
+         {
+             set.insert(p1);
+             p1=p1->next;
+             
+         }
+      while(p2!=NULL)
+      {
+          if(set.find(p2)!=set.end()){
+              return p2;
+          }
+          p2=p2->next;
+      }
+      return NULL;
+  }
 };
